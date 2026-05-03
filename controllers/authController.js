@@ -7,10 +7,12 @@ import nodemailer from "nodemailer";
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, username, email, password, role } = req.body;
 
-    const userExist = await User.findOne({ email });
-    if (userExist) {
+    if (await User.findOne({ username })) {
+      return res.status(400).json({ message: "Username sudah digunakan" });
+    }
+    if (await User.findOne({ email })) {
       return res.status(400).json({ message: "Email already registered" });
     }
 
@@ -18,6 +20,7 @@ export const register = async (req, res) => {
 
     const user = await User.create({
       name,
+      username,
       email,
       password: hashedPassword,
       role,
@@ -34,16 +37,16 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Username atau password salah" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ message: "Username atau password salah" });
     }
 
     const token = jwt.sign(
