@@ -124,12 +124,13 @@ export default function Login() {
                 <label className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
-                <button
-                  type="button"
-                  className="text-sm text-primary-600 hover:text-primary-700"
+                <Link
+                  to="/forgot-password"
+                  className="text-sm font-medium hover:underline"
+                  style={{ color: "#1b3a2d" }}
                 >
                   Lupa password?
-                </button>
+                </Link>
               </div>
               <div className="relative">
                 <svg

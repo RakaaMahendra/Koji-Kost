@@ -98,7 +98,7 @@ export default function MyBookings() {
   );
 
   return (
-    <div className="max-w-4xl mx-auto pb-12 animate-fade-in">
+    <div className="max-w-4xl mx-auto px-4 pb-12 animate-fade-in">
       {/* Header */}
       <div className="mb-8">
         {userName && (
@@ -143,25 +143,27 @@ export default function MyBookings() {
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-2 p-1 bg-gray-100 rounded-xl w-fit mb-6">
-        {[
-          { value: "all", label: "Semua" },
-          { value: "pending", label: "Menunggu" },
-          { value: "approved", label: "Disetujui" },
-          { value: "rejected", label: "Ditolak" },
-        ].map((f) => (
-          <button
-            key={f.value}
-            onClick={() => setFilter(f.value)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              filter === f.value
-                ? "bg-white text-primary-600 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
+      <div className="overflow-x-auto -mx-1 pb-1 mb-6">
+        <div className="flex items-center gap-2 p-1 bg-gray-100 rounded-xl w-fit min-w-max mx-1">
+          {[
+            { value: "all", label: "Semua" },
+            { value: "pending", label: "Menunggu" },
+            { value: "approved", label: "Disetujui" },
+            { value: "rejected", label: "Ditolak" },
+          ].map((f) => (
+            <button
+              key={f.value}
+              onClick={() => setFilter(f.value)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                filter === f.value
+                  ? "bg-white text-primary-600 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Bookings List */}

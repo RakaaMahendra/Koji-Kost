@@ -19,21 +19,6 @@ const ROOM_PHOTOS = [
     label: "🍳 Dapur",
     alt: "Dapur Koji Kost",
   },
-  {
-    src: "/lantai1-area.png",
-    label: "🏠 Area Lantai 1",
-    alt: "Area Lantai 1 Koji Kost",
-  },
-  {
-    src: "/lantai2-area.png",
-    label: "🏢 Area Lantai 2",
-    alt: "Area Lantai 2 Koji Kost",
-  },
-  {
-    src: "/lantai2-area1.png",
-    label: "🏢 Area Lantai 2 (2)",
-    alt: "Area Lantai 2 Koji Kost (2)",
-  },
 ];
 
 export default function RoomDetail() {
@@ -234,28 +219,13 @@ export default function RoomDetail() {
     <div className="max-w-6xl mx-auto px-4 pb-16 animate-fade-in">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-400 mb-5 pt-2">
-        <Link
-          to="/"
-          className="hover:text-primary-600 transition-colors font-medium"
-        >
+        <Link to="/" className="hover:text-primary-600 transition-colors font-medium">
           Semua Kamar
         </Link>
-        <svg
-          className="w-3.5 h-3.5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
-        <span className="text-gray-700 font-semibold">
-          Kamar {room.roomNumber}
-        </span>
+        <span className="text-gray-700 font-semibold">Kamar {room.roomNumber}</span>
       </nav>
 
       {/* ── HERO HEADER ── */}
@@ -263,26 +233,14 @@ export default function RoomDetail() {
         <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span
-                className={`badge ${getStatusBadge(
-                  room.status
-                )} text-xs px-2.5 py-0.5 font-semibold flex items-center gap-1`}
-              >
+              <span className={`badge ${getStatusBadge(room.status)} text-xs px-2.5 py-0.5 font-semibold flex items-center gap-1`}>
                 {room.status === "available" && (
                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block"></span>
                 )}
-                {room.status === "available"
-                  ? "Tersedia"
-                  : room.status === "occupied"
-                  ? "Terisi"
-                  : "Maintenance"}
+                {room.status === "available" ? "Tersedia" : room.status === "occupied" ? "Terisi" : "Maintenance"}
               </span>
               <span className="text-xs text-gray-400 flex items-center gap-1">
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
                 <span className="font-semibold text-yellow-600">4.8</span>
@@ -293,24 +251,9 @@ export default function RoomDetail() {
               Kamar {room.roomNumber} — Koji Kost
             </h1>
             <p className="text-sm text-gray-500 mt-1 flex items-center gap-1">
-              <svg
-                className="w-4 h-4 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
               Koji Kost Residence, Indonesia
             </p>
@@ -326,7 +269,7 @@ export default function RoomDetail() {
       </div>
 
       {/* ── PHOTO MOSAIC ── */}
-      <div className="relative rounded-2xl overflow-hidden mb-8 h-[420px] md:h-[480px] grid grid-cols-2 grid-rows-2 gap-2">
+      <div className="relative rounded-2xl overflow-hidden mb-8 h-[420px] md:h-[480px] grid grid-cols-2 gap-2">
         {/* Main large photo */}
         <div
           className="relative col-span-1 row-span-2 cursor-zoom-in group"
@@ -341,18 +284,8 @@ export default function RoomDetail() {
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-              <svg
-                className="w-5 h-5 text-gray-700"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-                />
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
               </svg>
             </div>
           </div>
@@ -372,18 +305,8 @@ export default function RoomDetail() {
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-              <svg
-                className="w-5 h-5 text-gray-700"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-                />
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
               </svg>
             </div>
           </div>
@@ -403,41 +326,18 @@ export default function RoomDetail() {
           />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity w-10 h-10 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
-              <svg
-                className="w-5 h-5 text-gray-700"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-                />
+              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z" />
               </svg>
             </div>
           </div>
           {/* "Lihat semua" button */}
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              openLightbox(0);
-            }}
+            onClick={(e) => { e.stopPropagation(); openLightbox(0); }}
             className="absolute bottom-3 right-3 flex items-center gap-2 bg-white text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md hover:bg-gray-50 transition-colors border border-gray-200"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 10h16M4 14h8"
-              />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h8" />
             </svg>
             Lihat semua foto
           </button>
@@ -608,30 +508,20 @@ export default function RoomDetail() {
       <div className="grid md:grid-cols-3 gap-10">
         {/* Left: Content */}
         <div className="md:col-span-2 space-y-0">
+
           {/* Quick info chips */}
           <div className="flex flex-wrap gap-2 py-6 border-b border-gray-100">
             {[
-              {
-                icon: "🏠",
-                label: "Lantai",
-                value: room.floor ? `Lantai ${room.floor}` : "Lantai 1",
-              },
+              { icon: "🏠", label: "Lantai", value: room.floor ? `Lantai ${room.floor}` : "Lantai 1" },
               { icon: "📐", label: "Luas", value: "3 × 4 m²" },
               { icon: "🏷️", label: "Tipe", value: "Kost Standar" },
               { icon: "👥", label: "Untuk", value: "Putra / Putri" },
             ].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-100"
-              >
+              <div key={idx} className="flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-100">
                 <span className="text-base">{item.icon}</span>
                 <div>
-                  <div className="text-[10px] text-gray-400 leading-none">
-                    {item.label}
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700">
-                    {item.value}
-                  </div>
+                  <div className="text-[10px] text-gray-400 leading-none">{item.label}</div>
+                  <div className="text-sm font-semibold text-gray-700">{item.value}</div>
                 </div>
               </div>
             ))}
@@ -643,16 +533,10 @@ export default function RoomDetail() {
               K
             </div>
             <div>
-              <div className="font-semibold text-gray-800">
-                Hosted by Koji Kost
-              </div>
+              <div className="font-semibold text-gray-800">Hosted by Koji Kost</div>
               <div className="text-sm text-gray-500 flex items-center gap-2 mt-0.5">
                 <span className="flex items-center gap-1">
-                  <svg
-                    className="w-3.5 h-3.5 text-yellow-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
+                  <svg className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                   4.8 · 24 ulasan
@@ -665,75 +549,35 @@ export default function RoomDetail() {
 
           {/* Description */}
           <div className="py-6 border-b border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">
-              Tentang Kamar Ini
-            </h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Tentang Kamar Ini</h2>
             <p className="text-gray-600 leading-relaxed text-[15px]">
-              Kamar kost nyaman dengan fasilitas lengkap. Cocok untuk mahasiswa
-              atau pekerja yang mencari hunian praktis dengan akses mudah ke
-              berbagai fasilitas umum. Lingkungan aman dan tenang, tersedia
-              parkir kendaraan.
+              Kamar kost nyaman dengan fasilitas lengkap. Cocok untuk mahasiswa atau pekerja
+              yang mencari hunian praktis dengan akses mudah ke berbagai fasilitas umum.
+              Lingkungan aman dan tenang, tersedia parkir kendaraan.
             </p>
           </div>
 
           {/* Facilities */}
           <div className="py-6 border-b border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Fasilitas yang Tersedia
-            </h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Fasilitas yang Tersedia</h2>
             {room.facilities && room.facilities.length > 0 ? (
               <div className="grid grid-cols-2 gap-3">
-                {[...room.facilities, "Iuran Sampah Gratis"].map(
-                  (facility, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-3 text-gray-700"
-                    >
-                      <svg
-                        className="w-5 h-5 text-gray-900 flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="text-sm">{facility}</span>
-                    </div>
-                  )
-                )}
+                {room.facilities.map((facility, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-gray-700">
+                    <svg className="w-5 h-5 text-gray-900 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-sm">{facility}</span>
+                  </div>
+                ))}
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-3">
-                {[
-                  "WiFi Gratis",
-                  "Kamar Mandi Dalam",
-                  "Listrik (Token)",
-                  "Air Bersih",
-                  "Lemari Pakaian",
-                  "Parkir Motor",
-                  "Iuran Sampah Gratis",
-                ].map((f, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-3 text-gray-700"
-                  >
-                    <svg
-                      className="w-5 h-5 text-gray-900 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
+                {["WiFi Gratis", "Kamar Mandi Dalam", "Listrik (Token)", "Air Bersih",
+                  "Lemari Pakaian", "Parkir Motor"].map((f, idx) => (
+                  <div key={idx} className="flex items-center gap-3 text-gray-700">
+                    <svg className="w-5 h-5 text-gray-900 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="text-sm">{f}</span>
                   </div>
@@ -744,9 +588,7 @@ export default function RoomDetail() {
 
           {/* Rules */}
           <div className="py-6 border-b border-gray-100">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">
-              Peraturan Kost
-            </h2>
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Peraturan Kost</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
                 { icon: "🕙", text: "Tamu menginap maks 22.00" },
@@ -754,10 +596,7 @@ export default function RoomDetail() {
                 { icon: "🧹", text: "Menjaga kebersihan dan ketenangan" },
                 { icon: "💳", text: "Pembayaran dilakukan di awal bulan" },
               ].map((rule, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-gray-50"
-                >
+                <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-gray-50">
                   <span className="text-base flex-shrink-0">{rule.icon}</span>
                   <span className="text-sm text-gray-600">{rule.text}</span>
                 </div>
@@ -767,20 +606,14 @@ export default function RoomDetail() {
 
           {/* Feedback Form */}
           <div className="py-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-1">
-              Tulis Feedback
-            </h2>
-            <p className="text-sm text-gray-500 mb-4">
-              Bagikan pengalaman atau saran kamu tentang kamar ini.
-            </p>
+            <h2 className="text-lg font-bold text-gray-900 mb-1">Tulis Feedback</h2>
+            <p className="text-sm text-gray-500 mb-4">Bagikan pengalaman atau saran kamu tentang kamar ini.</p>
             {fbMsg.text && (
-              <div
-                className={`mb-4 p-3 rounded-xl text-sm font-medium ${
-                  fbMsg.type === "success"
-                    ? "bg-green-50 text-green-700 border border-green-200"
-                    : "bg-red-50 text-red-700 border border-red-200"
-                }`}
-              >
+              <div className={`mb-4 p-3 rounded-xl text-sm font-medium ${
+                fbMsg.type === "success"
+                  ? "bg-green-50 text-green-700 border border-green-200"
+                  : "bg-red-50 text-red-700 border border-red-200"
+              }`}>
                 {fbMsg.text}
               </div>
             )}
@@ -826,24 +659,18 @@ export default function RoomDetail() {
               <span className="text-gray-500 text-sm mb-0.5">/bulan</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-500 mb-5">
-              <svg
-                className="w-3.5 h-3.5 text-yellow-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+              <svg className="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
               4.8 <span className="text-gray-300 mx-1">·</span> 24 ulasan
             </div>
 
             {msg.text && (
-              <div
-                className={`mb-4 p-3 rounded-xl text-sm font-medium ${
-                  msg.type === "success"
-                    ? "bg-green-50 text-green-700 border border-green-200"
-                    : "bg-red-50 text-red-700 border border-red-200"
-                }`}
-              >
+              <div className={`mb-4 p-3 rounded-xl text-sm font-medium ${
+                msg.type === "success"
+                  ? "bg-green-50 text-green-700 border border-green-200"
+                  : "bg-red-50 text-red-700 border border-red-200"
+              }`}>
                 {msg.text}
               </div>
             )}
@@ -889,95 +716,43 @@ export default function RoomDetail() {
                 >
                   {booking ? (
                     <>
-                      <svg
-                        className="animate-spin w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
+                      <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                       </svg>
                       Processing...
                     </>
-                  ) : (
-                    "Book Sekarang"
-                  )}
+                  ) : "Book Sekarang"}
                 </button>
 
                 {/* Total */}
                 <div className="flex items-center justify-between pt-3 border-t border-gray-100 text-sm">
                   <span className="text-gray-500">Total per bulan</span>
-                  <span className="font-bold text-gray-900">
-                    Rp {room.price?.toLocaleString("id-ID")}
-                  </span>
+                  <span className="font-bold text-gray-900">Rp {room.price?.toLocaleString("id-ID")}</span>
                 </div>
 
                 {!logged && (
                   <p className="text-center text-xs text-gray-500">
-                    <Link
-                      to="/login"
-                      className="text-primary-600 hover:underline font-medium"
-                    >
-                      Login
-                    </Link>{" "}
-                    untuk melakukan booking
+                    <Link to="/login" className="text-primary-600 hover:underline font-medium">Login</Link>{" "}untuk melakukan booking
                   </p>
                 )}
               </form>
             ) : (
               <div className="text-center py-6">
                 <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gray-100 flex items-center justify-center">
-                  <svg
-                    className="w-7 h-7 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
-                    />
+                  <svg className="w-7 h-7 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                   </svg>
                 </div>
-                <p className="text-gray-500 text-sm mb-3">
-                  Kamar ini sedang tidak tersedia
-                </p>
-                <Link
-                  to="/"
-                  className="text-primary-600 hover:underline text-sm font-medium"
-                >
-                  Lihat kamar lainnya
-                </Link>
+                <p className="text-gray-500 text-sm mb-3">Kamar ini sedang tidak tersedia</p>
+                <Link to="/" className="text-primary-600 hover:underline text-sm font-medium">Lihat kamar lainnya</Link>
               </div>
             )}
 
             {/* Contact Owner */}
             <button className="mt-4 w-full py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               Hubungi Pemilik
             </button>

@@ -35,12 +35,14 @@ export default function AdminDashboard() {
   const loadData = async () => {
     setLoading(true);
     try {
-      const [roomsRes, bookingsRes, feedbacksRes, usersRes] = await Promise.all([
-        api.get("/rooms"),
-        api.get("/bookings"),
-        api.get("/feedbacks"),
-        api.get("/auth/users"),
-      ]);
+      const [roomsRes, bookingsRes, feedbacksRes, usersRes] = await Promise.all(
+        [
+          api.get("/rooms"),
+          api.get("/bookings"),
+          api.get("/feedbacks"),
+          api.get("/auth/users"),
+        ]
+      );
       setRooms(roomsRes.data);
       setBookings(bookingsRes.data);
       setFeedbacks(feedbacksRes.data);
@@ -167,7 +169,12 @@ export default function AdminDashboard() {
   };
 
   const deleteUser = async (id) => {
-    if (!confirm("Yakin ingin menghapus akun user ini? Semua booking-nya juga akan dihapus.")) return;
+    if (
+      !confirm(
+        "Yakin ingin menghapus akun user ini? Semua booking-nya juga akan dihapus."
+      )
+    )
+      return;
     try {
       await api.delete(`/auth/users/${id}`);
       await loadData();
@@ -223,7 +230,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto pb-12 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 pb-12 animate-fade-in">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
@@ -366,59 +373,61 @@ export default function AdminDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 p-1 bg-gray-100 rounded-xl w-fit mb-6">
-        {[
-          {
-            value: "overview",
-            label: "Overview",
-            icon: "M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z",
-          },
-          {
-            value: "rooms",
-            label: "Kamar",
-            icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
-          },
-          {
-            value: "bookings",
-            label: "Booking",
-            icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-          },
-          {
-            value: "users",
-            label: "Users",
-            icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z",
-          },
-          {
-            value: "feedback",
-            label: "Feedback",
-            icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
-          },
-        ].map((tab) => (
-          <button
-            key={tab.value}
-            onClick={() => setActiveTab(tab.value)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
-              activeTab === tab.value
-                ? "bg-white text-primary-600 shadow-sm"
-                : "text-gray-600 hover:text-gray-900"
-            }`}
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+      <div className="overflow-x-auto mb-6 -mx-1 pb-1">
+        <div className="flex items-center gap-2 p-1 bg-gray-100 rounded-xl w-fit min-w-max mx-1">
+          {[
+            {
+              value: "overview",
+              label: "Overview",
+              icon: "M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z",
+            },
+            {
+              value: "rooms",
+              label: "Kamar",
+              icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+            },
+            {
+              value: "bookings",
+              label: "Booking",
+              icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
+            },
+            {
+              value: "users",
+              label: "Users",
+              icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z",
+            },
+            {
+              value: "feedback",
+              label: "Feedback",
+              icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+            },
+          ].map((tab) => (
+            <button
+              key={tab.value}
+              onClick={() => setActiveTab(tab.value)}
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                activeTab === tab.value
+                  ? "bg-white text-primary-600 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={tab.icon}
-              />
-            </svg>
-            {tab.label}
-          </button>
-        ))}
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={tab.icon}
+                />
+              </svg>
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Content */}
@@ -984,9 +993,7 @@ export default function AdminDashboard() {
           {activeTab === "users" && (
             <div className="card overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-100">
-                <h2 className="text-lg font-bold text-gray-900">
-                  Daftar User
-                </h2>
+                <h2 className="text-lg font-bold text-gray-900">Daftar User</h2>
                 <p className="text-sm text-gray-500 mt-0.5">
                   Semua akun pengguna terdaftar
                 </p>
@@ -1123,8 +1130,18 @@ export default function AdminDashboard() {
                               </span>
                               {fb.done && (
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs font-medium">
-                                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                  <svg
+                                    className="w-3 h-3"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M5 13l4 4L19 7"
+                                    />
                                   </svg>
                                   Selesai
                                 </span>
@@ -1148,10 +1165,24 @@ export default function AdminDashboard() {
                                     ? "text-green-600 bg-green-100 hover:bg-green-200"
                                     : "text-gray-400 hover:bg-gray-100 hover:text-green-600"
                                 }`}
-                                title={fb.done ? "Tandai belum selesai" : "Tandai selesai"}
+                                title={
+                                  fb.done
+                                    ? "Tandai belum selesai"
+                                    : "Tandai selesai"
+                                }
                               >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M5 13l4 4L19 7"
+                                  />
                                 </svg>
                               </button>
                               <button
@@ -1159,8 +1190,18 @@ export default function AdminDashboard() {
                                 className="p-1.5 rounded-lg text-red-400 hover:bg-red-50 transition-colors"
                                 title="Hapus feedback"
                               >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                  />
                                 </svg>
                               </button>
                             </div>
