@@ -309,7 +309,12 @@ export default function MyBookings() {
                       Lihat Kamar
                     </Link>
                     {b.status === "approved" && (
-                      <button className="text-sm font-medium text-accent-600 hover:text-accent-700 flex items-center gap-1">
+                      <a
+                        href="https://wa.me/6281338059744"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-accent-600 hover:text-accent-700 flex items-center gap-1"
+                      >
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -324,7 +329,7 @@ export default function MyBookings() {
                           />
                         </svg>
                         Hubungi Pemilik
-                      </button>
+                      </a>
                     )}
                   </div>
                 </div>

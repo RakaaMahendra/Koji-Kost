@@ -62,7 +62,7 @@ export default function Home() {
               View Rooms
             </Link>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6281338059744"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all hover:bg-white/60"

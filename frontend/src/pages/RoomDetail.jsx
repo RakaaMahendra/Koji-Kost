@@ -102,6 +102,49 @@ export default function RoomDetail() {
   };
   const handleMouseUp = () => setDragging(false);
 
+  // Touch support for lightbox (swipe + pinch-to-zoom)
+  const [touchStart, setTouchStart] = useState(null);
+  const [pinchStart, setPinchStart] = useState(null);
+
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+      setPinchStart({ dist, zoom });
+    } else {
+      setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches.length === 2 && pinchStart) {
+      e.preventDefault();
+      const dist = Math.hypot(
+        e.touches[1].clientX - e.touches[0].clientX,
+        e.touches[1].clientY - e.touches[0].clientY
+      );
+      setZoom(
+        Math.min(4, Math.max(1, pinchStart.zoom * (dist / pinchStart.dist)))
+      );
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (pinchStart) {
+      setPinchStart(null);
+      return;
+    }
+    if (!touchStart) return;
+    const dx = e.changedTouches[0].clientX - touchStart.x;
+    const dy = e.changedTouches[0].clientY - touchStart.y;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+      dx < 0 ? nextPhoto() : prevPhoto();
+    }
+    setTouchStart(null);
+  };
+
   useEffect(() => {
     if (!lightbox.open) return;
     const onKey = (e) => {
@@ -326,10 +369,10 @@ export default function RoomDetail() {
       </div>
 
       {/* ── PHOTO MOSAIC ── */}
-      <div className="relative rounded-2xl overflow-hidden mb-8 h-[420px] md:h-[480px] grid grid-cols-2 grid-rows-2 gap-2">
+      <div className="relative rounded-2xl overflow-hidden mb-8 h-[280px] md:h-[480px] md:grid md:grid-cols-2 md:grid-rows-2 md:gap-2">
         {/* Main large photo */}
         <div
-          className="relative col-span-1 row-span-2 cursor-zoom-in group"
+          className="relative md:col-span-1 md:row-span-2 h-full cursor-zoom-in group"
           onClick={() => openLightbox(0)}
         >
           <img
@@ -356,11 +399,34 @@ export default function RoomDetail() {
               </svg>
             </div>
           </div>
+          {/* "Lihat semua foto" button — visible on mobile only */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              openLightbox(0);
+            }}
+            className="md:hidden absolute bottom-3 right-3 flex items-center gap-2 bg-white text-gray-800 text-xs font-semibold px-3 py-1.5 rounded-lg shadow-md border border-gray-200"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 10h16M4 14h8"
+              />
+            </svg>
+            Lihat semua foto
+          </button>
         </div>
 
         {/* Top-right photo */}
         <div
-          className="relative cursor-zoom-in group"
+          className="relative hidden md:block cursor-zoom-in group"
           onClick={() => openLightbox(1)}
         >
           <img
@@ -391,7 +457,7 @@ export default function RoomDetail() {
 
         {/* Bottom-right photo */}
         <div
-          className="relative cursor-zoom-in group"
+          className="relative hidden md:block cursor-zoom-in group"
           onClick={() => openLightbox(2)}
         >
           <img
@@ -579,6 +645,9 @@ export default function RoomDetail() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             style={{
               cursor: zoom > 1 ? (dragging ? "grabbing" : "grab") : "default",
             }}
@@ -965,7 +1034,12 @@ export default function RoomDetail() {
             )}
 
             {/* Contact Owner */}
-            <button className="mt-4 w-full py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+            <a
+              href="https://wa.me/6281338059744"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 w-full py-3 rounded-xl border border-gray-300 text-gray-700 font-semibold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+            >
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -980,7 +1054,7 @@ export default function RoomDetail() {
                 />
               </svg>
               Hubungi Pemilik
-            </button>
+            </a>
           </div>
         </div>
       </div>
