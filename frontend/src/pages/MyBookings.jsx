@@ -14,7 +14,7 @@ export default function MyBookings() {
     if (token) setAuthToken(token);
     api
       .get("/bookings/my")
-      .then((res) => setBookings(res.data))
+      .then((res) => setBookings(Array.isArray(res.data) ? res.data : []))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);

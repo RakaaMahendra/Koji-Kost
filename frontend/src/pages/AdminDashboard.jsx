@@ -43,10 +43,10 @@ export default function AdminDashboard() {
           api.get("/auth/users"),
         ]
       );
-      setRooms(roomsRes.data);
-      setBookings(bookingsRes.data);
-      setFeedbacks(feedbacksRes.data);
-      setUsers(usersRes.data);
+      setRooms(Array.isArray(roomsRes.data) ? roomsRes.data : []);
+      setBookings(Array.isArray(bookingsRes.data) ? bookingsRes.data : []);
+      setFeedbacks(Array.isArray(feedbacksRes.data) ? feedbacksRes.data : []);
+      setUsers(Array.isArray(usersRes.data) ? usersRes.data : []);
     } catch (err) {
       console.error(err);
     } finally {

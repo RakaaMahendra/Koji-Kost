@@ -14,7 +14,7 @@ export default function Rooms() {
     setLoading(true);
     api
       .get("/rooms")
-      .then((res) => setRooms(res.data))
+      .then((res) => setRooms(Array.isArray(res.data) ? res.data : []))
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
