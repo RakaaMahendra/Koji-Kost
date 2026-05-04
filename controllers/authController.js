@@ -7,7 +7,7 @@ import nodemailer from "nodemailer";
 
 export const register = async (req, res) => {
   try {
-    const { name, username, email, password, role } = req.body;
+    const { name, username, email, password } = req.body;
 
     if (await User.findOne({ username })) {
       return res.status(400).json({ message: "Username sudah digunakan" });
@@ -23,11 +23,41 @@ export const register = async (req, res) => {
       username,
       email,
       password: hashedPassword,
-      role,
+      role: "user",
     });
 
     res.status(201).json({
       message: "User registered",
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const createAdmin = async (req, res) => {
+  try {
+    const { name, username, email, password } = req.body;
+
+    if (await User.findOne({ username })) {
+      return res.status(400).json({ message: "Username sudah digunakan" });
+    }
+    if (await User.findOne({ email })) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      username,
+      email,
+      password: hashedPassword,
+      role: "admin",
+    });
+
+    res.status(201).json({
+      message: "Admin created",
       user,
     });
   } catch (error) {
